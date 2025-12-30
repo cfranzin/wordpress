@@ -375,3 +375,148 @@ function tdc_contact_form_handler() {
 }
 add_action( 'wp_ajax_tdc_contact_form', 'tdc_contact_form_handler' );
 add_action( 'wp_ajax_nopriv_tdc_contact_form', 'tdc_contact_form_handler' );
+
+/**
+ * Agregar productos automáticamente al menú como subítems
+ */
+function tdc_add_products_to_menu( $items, $args ) {
+    // Solo aplicar al menú principal
+    if ( $args->theme_location !== 'primary' ) {
+        return $items;
+    }
+    
+    // Buscar el ítem "Productos" en el menú
+    $menu_items = wp_get_nav_menu_items( $args->menu );
+    $productos_item = null;
+    $productos_id = 0;
+    
+    if ( $menu_items ) {
+        foreach ( $menu_items as $item ) {
+            // Buscar por título o URL que contenga "productos"
+            if ( stripos( $item->title, 'Productos' ) !== false || 
+                 stripos( $item->url, 'productos' ) !== false ) {
+                $productos_item = $item;
+                $productos_id = $item->ID;
+                break;
+            }
+        }
+    }
+    
+    // Si no encontramos el ítem "Productos", retornar sin modificar
+    if ( ! $productos_id ) {
+        return $items;
+    }
+    
+    // Obtener todos los productos publicados
+    $productos = get_posts( array(
+        'post_type'      => 'producto',
+        'posts_per_page' => -1,
+        'orderby'        => 'menu_order',
+        'order'          => 'ASC',
+        'post_status'    => 'publish',
+    ) );
+    
+    if ( empty( $productos ) ) {
+        return $items;
+    }
+    
+    // Construir submenú de productos
+    $submenu_items = '';
+    foreach ( $productos as $producto ) {
+        $submenu_items .= '<li class="menu-item menu-item-type-post_type menu-item-object-producto">';
+        $submenu_items .= '<a href="' . get_permalink( $producto->ID ) . '">' . esc_html( $producto->post_title ) . '</a>';
+        $submenu_items .= '</li>';
+    }
+    
+    // Agregar clase para indicar que tiene submenú
+    $items = str_replace(
+        'id="menu-item-' . $productos_id . '"',
+        'id="menu-item-' . $productos_id . '" class="menu-item-has-children"',
+        $items
+    );
+    
+    // Insertar el submenú después del ítem Productos
+    $items = str_replace(
+        'id="menu-item-' . $productos_id . '"><a',
+        'id="menu-item-' . $productos_id . '"><a',
+        $items
+    );
+    
+    // Buscar el cierre del <li> del ítem Productos e insertar el submenú antes
+    $pattern = '/(id="menu-item-' . $productos_id . '"[^>]*>.*?<\/a>)/s';
+    $replacement = '$1<ul class="sub-menu">' . $submenu_items . '</ul>';
+    $items = preg_replace( $pattern, $replacement, $items );
+    
+    return $items;
+}
+add_filter( 'wp_nav_menu_items', 'tdc_add_products_to_menu', 10, 2 );
+
+/**
+ * Agregar CSS para submenús de productos
+ */
+function tdc_submenu_styles() {
+    ?>
+    <style>
+        .main-navigation .sub-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--color-white);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            min-width: 250px;
+            z-index: 999;
+            list-style: none;
+            padding: 15px 0;
+            margin: 0;
+        }
+        
+        .main-navigation .menu-item-has-children {
+            position: relative;
+        }
+        
+        .main-navigation .menu-item-has-children:hover .sub-menu {
+            display: block;
+        }
+        
+        .main-navigation .sub-menu li {
+            padding: 0;
+        }
+        
+        .main-navigation .sub-menu a {
+            display: block;
+            padding: 12px 25px;
+            color: var(--color-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .main-navigation .sub-menu a:hover {
+            background: var(--color-light);
+            color: var(--color-accent);
+            border-left-color: var(--color-accent);
+        }
+        
+        @media (max-width: 768px) {
+            .main-navigation .sub-menu {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: rgba(0, 51, 102, 0.05);
+                padding: 10px 0;
+            }
+            
+            .main-navigation .menu-item-has-children.active .sub-menu {
+                display: block;
+            }
+            
+            .main-navigation .sub-menu a {
+                padding: 10px 20px 10px 40px;
+                font-size: 14px;
+            }
+        }
+    </style>
+    <?php
+}
+add_action( 'wp_head', 'tdc_submenu_styles' );

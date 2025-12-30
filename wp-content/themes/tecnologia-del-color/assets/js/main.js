@@ -9,6 +9,23 @@ jQuery(document).ready(function($) {
         });
     });
     
+    // Mobile submenu toggle
+    $('.main-navigation .menu-item-has-children > a').on('click', function(e) {
+        if ($(window).width() <= 768) {
+            e.preventDefault();
+            $(this).parent().toggleClass('active');
+            $(this).next('.sub-menu').slideToggle(300);
+        }
+    });
+    
+    // Close mobile menu when clicking outside
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.main-navigation, #menu-toggle').length) {
+            $('.main-navigation').removeClass('active');
+            $('#menu-toggle').attr('aria-expanded', 'false');
+        }
+    });
+    
     // Smooth scroll for anchor links
     $('a[href^="#"]').on('click', function(e) {
         var target = $(this.getAttribute('href'));
