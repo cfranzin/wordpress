@@ -9,28 +9,6 @@
 <?php wp_body_open(); ?>
 
 <header class="site-header">
-    <!-- Header Top -->
-    <div class="header-top">
-        <div class="container">
-            <div class="header-contact">
-                <span><?php echo esc_html( get_theme_mod( 'tdc_phone', '(54-11) 4761-2300' ) ); ?></span>
-                <?php 
-                $whatsapp = get_theme_mod( 'tdc_whatsapp', '5491132832399' );
-                if ( $whatsapp ) : 
-                ?>
-                    <a href="https://wa.me/<?php echo esc_attr( $whatsapp ); ?>" target="_blank">
-                        WhatsApp
-                    </a>
-                <?php endif; ?>
-            </div>
-            <div class="header-social">
-                <a href="https://ar.linkedin.com/company/tecnologiadelcolor" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="https://www.facebook.com/tecnologiadelcolor" target="_blank" rel="noopener">Facebook</a>
-                <a href="https://www.instagram.com/tecnologia.del.color/" target="_blank" rel="noopener">Instagram</a>
-            </div>
-        </div>
-    </div>
-    
     <!-- Header Main -->
     <div class="header-main">
         <div class="container">

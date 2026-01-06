@@ -9,7 +9,7 @@ get_header();
 ?>
 
 <!-- Hero Section -->
-<section class="hero-section">
+<section class="hero-section" style="background-image: linear-gradient(135deg, rgba(0, 51, 102, 0.85) 0%, rgba(0, 102, 204, 0.85) 100%), url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/background-inicio.jpg' ); ?>');">
     <div class="container">
         <div class="hero-content">
             <p class="hero-tagline"><?php _e( 'SOMOS', 'tecnologia-del-color' ); ?></p>
@@ -43,7 +43,15 @@ get_header();
                 <a href="<?php echo esc_url( home_url( '/nosotros' ) ); ?>" class="btn btn-primary"><?php _e( 'Conocer más', 'tecnologia-del-color' ); ?></a>
             </div>
             <div class="about-image">
-                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/about-placeholder.jpg' ); ?>" alt="<?php _e( 'Tecnología del Color', 'tecnologia-del-color' ); ?>">
+                <div class="about-image-placeholder">
+                    <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="400" fill="#f5f5f5"/>
+                        <path d="M200 100L250 200H150L200 100Z" fill="#003366" opacity="0.1"/>
+                        <circle cx="200" cy="250" r="50" fill="#0066cc" opacity="0.1"/>
+                        <text x="200" y="210" text-anchor="middle" font-size="24" fill="#003366" font-weight="600">TECNOLOGÍA</text>
+                        <text x="200" y="240" text-anchor="middle" font-size="24" fill="#0066cc" font-weight="600">DEL COLOR</text>
+                    </svg>
+                </div>
             </div>
         </div>
     </div>

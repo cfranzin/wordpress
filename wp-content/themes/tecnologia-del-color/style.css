@@ -140,10 +140,25 @@ a:hover {
 
 /* === HERO SECTION === */
 .hero-section {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
     color: var(--color-white);
-    padding: 100px 0;
+    padding: 0;
     text-align: center;
+    position: relative;
+    min-height: 100vh;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
 }
 
 .hero-content h1 {
@@ -222,6 +237,37 @@ a:hover {
 }
 
 /* === SERVICIOS === */
+.services-section {
+    background-color: var(--color-white);
+}
+
+.services-intro {
+    max-width: 900px;
+    margin: 0 auto 50px;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.services-intro p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--color-dark);
+    margin-bottom: 20px;
+}
+
+.services-intro p:last-child {
+    margin-bottom: 0;
+}
+
+.services-intro strong {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.services-custom-content {
+    margin: 40px 0;
+}
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -245,6 +291,7 @@ a:hover {
 .service-image {
     height: 250px;
     overflow: hidden;
+    background: #f5f5f5;
 }
 
 .service-image img {
@@ -256,6 +303,25 @@ a:hover {
 
 .service-card:hover .service-image img {
     transform: scale(1.1);
+}
+
+.service-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-light);
+}
+
+.service-placeholder span {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 20px;
+    text-align: center;
 }
 
 .service-content {
@@ -271,6 +337,205 @@ a:hover {
 .service-content p {
     color: var(--color-gray);
     margin-bottom: 20px;
+}
+
+/* Services Contact Section */
+.services-contact-section {
+    margin-top: 80px;
+    padding: 60px 0;
+    background: var(--color-light);
+    border-radius: 10px;
+}
+
+.contact-form-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-form-wrapper h2 {
+    color: var(--color-primary);
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+/* Single Service Page */
+.single-service-page {
+    padding: 60px 0;
+}
+
+.service-header {
+    background: var(--color-light);
+    color: var(--color-dark);
+    text-align: center;
+}
+
+.service-header .service-subtitle {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.service-header h1 {
+    color: var(--color-primary);
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.service-header .service-description {
+    font-size: 20px;
+    margin-top: 15px;
+    color: var(--color-gray);
+}
+
+.single-service-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.service-featured-image {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 40px;
+    background: #f5f5f5;
+    border-radius: 10px;
+}
+
+.service-featured-image img {
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.service-main-content {
+    background: var(--color-white);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.single-service-content .entry-content h2 {
+    color: var(--color-primary);
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 28px;
+    border-bottom: 3px solid var(--color-accent);
+    padding-bottom: 10px;
+}
+
+.single-service-content .entry-content h3 {
+    color: var(--color-primary);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.single-service-content .entry-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 30px;
+}
+
+.single-service-content .entry-content ul li {
+    padding: 10px 0 10px 30px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.single-service-content .entry-content ul li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Service Contact Section */
+.service-contact-section {
+    margin: 60px 0;
+}
+
+.service-contact-section .contact-card {
+    background: var(--color-light);
+    padding: 60px 40px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid var(--color-border);
+}
+
+.service-contact-section .contact-card h2 {
+    color: var(--color-primary);
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.service-contact-section .contact-card p {
+    font-size: 18px;
+    color: var(--color-gray);
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Service Navigation */
+.service-navigation {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 2px solid var(--color-border);
+}
+
+.service-navigation .nav-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.back-to-services {
+    text-align: center;
+}
+
+/* Responsive Services */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-header h1 {
+        font-size: 32px;
+    }
+    
+    .service-main-content {
+        padding: 30px 20px;
+    }
+    
+    .service-contact-section .contact-card {
+        padding: 40px 20px;
+    }
+    
+    .contact-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .service-navigation .nav-links {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
 }
 
 /* === PRODUCTOS === */
@@ -704,6 +969,21 @@ a:hover {
     font-size: 20px;
 }
 
+.about-image-placeholder {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.about-image-placeholder svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* === CLIENTES === */
 .clients-section {
     background-color: var(--color-white);
@@ -882,6 +1162,13 @@ a:hover {
     .main-navigation ul {
         flex-direction: column;
         padding: 20px;
+    }
+    
+    .hero-section {
+        min-height: 100vh;
+        height: 100vh;
+        padding: 0;
+        background-attachment: scroll;
     }
     
     .hero-content h1 {
